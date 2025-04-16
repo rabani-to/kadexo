@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        title: "var(--font-display)",
+      },
       zIndex: {
         "1": "1",
         "2": "2",
@@ -30,6 +33,14 @@ const config: Config = {
         "7": ".07",
       },
       colors: {
+        kadexo: {
+          green: {
+            DEFAULT: "#2ebd85",
+          },
+          red: {
+            DEFAULT: "#f6465d",
+          },
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

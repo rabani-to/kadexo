@@ -23,6 +23,7 @@ const fontSora = Sora({
 export const metadata: Metadata = {
   title: "Next14 - World Mini App Template",
   description: "Template",
+  metadataBase: new URL("https://kadexo.vercel.app"),
 }
 
 const ErudaProvider = dynamic(
