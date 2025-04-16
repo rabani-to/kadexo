@@ -77,8 +77,8 @@ function Seller() {
         </div>
       </div>
 
-      <nav className="flex mt-4 gap-6">
-        <div className="flex gap-3.5 flex-wrap">
+      <nav className="flex items-end justify-between mt-5 gap-8">
+        <div className="flex mb-0.5 gap-2.5 flex-wrap">
           <TransferType color="#10298e">BBVA</TransferType>
           <TransferType color="#102981">SEPA Instant</TransferType>
           <TransferType color="#63aa99">N26</TransferType>
@@ -86,7 +86,7 @@ function Seller() {
           <TransferType color="#99e778">Wise</TransferType>
         </div>
 
-        <button className="bg-kadexo-green shrink-0 rounded-md w-32 font-semibold text-white">
+        <button className="bg-kadexo-green shrink-0 rounded-md py-1.5 w-32 font-semibold text-white">
           Buy
         </button>
       </nav>
