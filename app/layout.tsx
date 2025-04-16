@@ -6,6 +6,7 @@ import { WorldAppProvider } from "@radish-la/world-auth"
 import { Rubik, Sora } from "next/font/google"
 
 import { Toaster } from "@/components/ui/sonner"
+import MainLayout from "./MainLayout"
 import { validator } from "./session"
 
 const fontRubik = Rubik({
@@ -53,7 +54,9 @@ export default function RootLayout({
           swipeDirections={["left", "top", "right", "bottom"]}
         />
         <WorldAppProvider appName="Kadexo" withValidator={validator}>
-          <ErudaProvider>{children}</ErudaProvider>
+          <ErudaProvider>
+            <MainLayout>{children}</MainLayout>
+          </ErudaProvider>
         </WorldAppProvider>
       </body>
     </html>

@@ -1,9 +1,5 @@
-import SectionHome from "./sections/Home"
+import SellerList from "./sections/SellerList"
 
-export default function Home() {
-  return (
-    <div className="max-w-2xl grid mx-auto">
-      <SectionHome />
-    </div>
-  )
+export default function PageDefaultBuy() {
+  return <SellerList type="buy" />
 }

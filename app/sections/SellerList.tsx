@@ -1,45 +1,23 @@
 "use client"
 
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Fragment, PropsWithChildren } from "react"
-
+import { cn } from "@/lib/utils"
+import type { PropsWithChildren } from "react"
 import { LuTimer } from "react-icons/lu"
 import { MdVerified } from "react-icons/md"
 
-export default function SectionHome() {
+export default function SellerList({ type = "buy" }: { type: "buy" | "sell" }) {
   return (
-    <main className="min-h-screen">
-      <Tabs asChild defaultValue="buy" className="w-full">
-        <Fragment>
-          <TabsList asChild>
-            <nav className="w-full bg-white border-b p-0.5 rounded-none h-auto grid grid-cols-2">
-              <TabsTrigger
-                className="text-lg py-2 rounded-lg data-[state=active]:text-white data-[state=active]:bg-kadexo-green"
-                value="buy"
-              >
-                <strong>Buy</strong>
-              </TabsTrigger>
-              <TabsTrigger
-                className="text-lg py-2 rounded-lg data-[state=active]:text-white data-[state=active]:bg-kadexo-red"
-                value="sell"
-              >
-                <strong>Sell</strong>
-              </TabsTrigger>
-            </nav>
-          </TabsList>
-        </Fragment>
-      </Tabs>
-      <div className="grid mb-24">
-        <Seller />
-        <Seller />
-        <Seller />
-        <Seller />
-      </div>
-    </main>
+    <div className="grid mb-24">
+      <Seller type={type} />
+      <Seller type={type} />
+      <Seller type={type} />
+      <Seller type={type} />
+    </div>
   )
 }
 
-function Seller() {
+function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
+  const isSelling = type === "sell"
   return (
     <div className="border-b p-4 pb-8 border-black/5">
       <nav className="flex items-center">
@@ -86,8 +64,13 @@ function Seller() {
           <TransferType color="#99e778">Wise</TransferType>
         </div>
 
-        <button className="bg-kadexo-green shrink-0 rounded-md py-1.5 w-32 font-semibold text-white">
-          Buy
+        <button
+          className={cn(
+            isSelling ? "bg-kadexo-red" : "bg-kadexo-green",
+            "shrink-0 rounded-md py-1.5 w-32 font-semibold text-white"
+          )}
+        >
+          {isSelling ? "Sell" : "Buy"} WLD
         </button>
       </nav>
     </div>
