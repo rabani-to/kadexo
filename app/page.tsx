@@ -1,7 +1,6 @@
 "use client"
 
 import { useWorldAuth } from "@radish-la/world-auth"
-import Brr from "./Brr"
 
 export default function Home() {
   const { user, isMiniApp, isConnected, signIn } = useWorldAuth({
@@ -17,7 +16,7 @@ export default function Home() {
       <p className="text-lg opacity-70 max-w-xl text-center">
         Welcome {user?.username ? <strong>{user.username}</strong> : ""} to the
         beginning of your Worldcoin journey. This is a template for building
-        mini-apps with Auth and UI ready to go <Brr />
+        mini-apps with Auth and UI ready to go brrr.
       </p>
       <button
         className="bg-black mt-4 mx-auto font-semibold text-xl max-w-xs w-full text-white px-6 py-4 rounded-full"

@@ -51,10 +51,7 @@ export default function RootLayout({
           }}
           swipeDirections={["left", "top", "right", "bottom"]}
         />
-        <WorldAppProvider
-          appName="REPLACE_YOUR_APP_NAME"
-          withValidator={validator}
-        >
+        <WorldAppProvider appName="Kadexo" withValidator={validator}>
           <ErudaProvider>{children}</ErudaProvider>
         </WorldAppProvider>
       </body>
