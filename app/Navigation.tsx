@@ -17,17 +17,17 @@ export default function Navigation() {
       <Tabs asChild value={isSell ? "sell" : "buy"} className="w-full">
         <Fragment>
           <TabsList asChild>
-            <nav className="w-full bg-white border-b p-0 rounded-none h-auto grid grid-cols-2">
+            <nav className="w-full bg-white border-b rounded-none h-auto grid grid-cols-2">
               <TabsTrigger
                 onClick={() => router.push("/")}
-                className="text-lg py-2.5 rounded-none data-[state=active]:text-white data-[state=active]:bg-kadexo-green"
+                className="text-lg py-3 rounded-none data-[state=active]:text-white data-[state=active]:bg-kadexo-green"
                 value="buy"
               >
                 <strong>Buy</strong>
               </TabsTrigger>
               <TabsTrigger
                 onClick={() => router.push("/sell")}
-                className="text-lg py-2.5 rounded-none data-[state=active]:text-white data-[state=active]:bg-kadexo-red"
+                className="text-lg py-3 rounded-none data-[state=active]:text-white data-[state=active]:bg-kadexo-red"
                 value="sell"
               >
                 <strong>Sell</strong>

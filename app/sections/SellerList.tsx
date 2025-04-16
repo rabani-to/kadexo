@@ -67,7 +67,7 @@ function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
         <button
           className={cn(
             isSelling ? "bg-kadexo-red" : "bg-kadexo-green",
-            "shrink-0 rounded-md py-1.5 w-32 font-semibold text-white"
+            "shrink-0 rounded-md py-1.5 w-32 font-medium text-white"
           )}
         >
           {isSelling ? "Sell" : "Buy"} WLD
