@@ -1,3 +1,4 @@
+import "@worldcoin/mini-apps-ui-kit-react/styles.css"
 import "./globals.css"
 
 import type { Metadata } from "next"
@@ -6,6 +7,7 @@ import { WorldAppProvider } from "@radish-la/world-auth"
 import { Rubik, Sora } from "next/font/google"
 
 import { Toaster } from "@/components/ui/sonner"
+import { Toaster as WorldToaster } from "@worldcoin/mini-apps-ui-kit-react"
 import MainLayout from "./MainLayout"
 import { validator } from "./session"
 
@@ -44,6 +46,7 @@ export default function RootLayout({
       <body
         className={`${fontRubik.variable} ${fontSora.variable} ${fontRubik.className} antialiased`}
       >
+        <WorldToaster duration={2_500} />
         <Toaster
           theme="light"
           style={{ zIndex: 55 }}

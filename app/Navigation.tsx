@@ -10,6 +10,9 @@ import { ALL_TOKENS, useTokenAtom, WLD_TOKEN } from "@/lib/atoms/token"
 import { MdOutlineSyncAlt } from "react-icons/md"
 import { FaChevronDown, FaFilter } from "react-icons/fa"
 import { ALL_CURRENCIES, USD, useCurrencyAtom } from "@/lib/atoms/currency"
+import NumberSelectModal, {
+  getCurrrencySymbol,
+} from "@/components/NumberSelectModal"
 
 export default function Navigation() {
   const [selectedToken, setSelectedToken] = useTokenAtom()
@@ -65,10 +68,17 @@ export default function Navigation() {
           )}
         </MainSelect>
 
-        <button className="flex py-3 items-center gap-1.5">
-          <strong>Amount</strong>
-          <FaChevronDown className="ml-1" />
-        </button>
+        <NumberSelectModal currency={currency.value}>
+          {(value) => (
+            <button className="flex whitespace-nowrap py-3 items-center gap-1.5">
+              <strong>
+                {value ? getCurrrencySymbol(currency.value) : ""}{" "}
+                {value ? value.toLocaleString("en-US") : "Amount"}
+              </strong>
+              <FaChevronDown className="ml-1" />
+            </button>
+          )}
+        </NumberSelectModal>
 
         <div className="flex-grow" />
 
