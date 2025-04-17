@@ -22,8 +22,8 @@ const fontSora = Sora({
 })
 
 export const metadata: Metadata = {
-  title: "Next14 - World Mini App Template",
-  description: "Template",
+  title: "Kadexo",
+  description: "A P2P decentralized exchange for the Worldchain",
   metadataBase: new URL("https://kadexo.vercel.app"),
 }
 

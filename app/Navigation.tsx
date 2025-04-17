@@ -20,7 +20,7 @@ export default function Navigation() {
 
   return (
     <Fragment>
-      <Tabs asChild value={isSell ? "sell" : "buy"} className="w-full">
+      <Tabs asChild value={isSell ? "sell" : "buy"}>
         <Fragment>
           <TabsList asChild>
             <nav className="w-full bg-white border-b rounded-none h-auto grid grid-cols-2">
