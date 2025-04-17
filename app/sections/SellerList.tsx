@@ -1,5 +1,7 @@
 "use client"
 
+import { useCurrencyAtom } from "@/lib/atoms/currency"
+import { useTokenAtom, WLD_TOKEN } from "@/lib/atoms/token"
 import { cn } from "@/lib/utils"
 import type { PropsWithChildren } from "react"
 import { LuTimer } from "react-icons/lu"
@@ -17,32 +19,39 @@ export default function SellerList({ type = "buy" }: { type: "buy" | "sell" }) {
 }
 
 function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
+  const [token] = useTokenAtom()
+  const [currency] = useCurrencyAtom()
+
   const isSelling = type === "sell"
+
   return (
     <div className="border-b p-4 pb-8 border-black/5">
       <nav className="flex items-center">
-        <div className="flex items-center gap-1">
+        <div className="flex items-start gap-1">
           <div className="relative mr-1">
             <figure className="bg-black rounded-lg overflow-hidden size-6"></figure>
             <div className="absolute border border-white bg-kadexo-green size-2 rounded-full -bottom-0.5 -right-0.5" />
           </div>
-          <h2>Fastdeals XYZ</h2>
-          <MdVerified className="text-kadexo-green" />
+          <div>
+            <h2>Fastdeals XYZ</h2>
+            <span className="flex -mt-1 text-xs items-center gap-1">
+              <LuTimer className="scale-125" />
+              <span>3 minutes</span>
+            </span>
+          </div>
+          <MdVerified className="text-kadexo-green mt-1" />
         </div>
 
         <div className="flex-grow" />
 
-        <div className="flex items-center gap-1 text-xs opacity-70">
-          <LuTimer />
-          <span>3 minutes</span>
+        <div className="text-sm opacity-70">
+          <span>320 Order(s) | 100%</span>
         </div>
       </nav>
 
-      <nav className="mt-1 opacity-70 text-sm">320 Order(s) | 100%</nav>
-
       <div className="mt-3 grid gap-1">
         <div>
-          <span className="opacity-70 mr-1 text-sm">EUR</span>{" "}
+          <span className="opacity-70 mr-1 text-sm">{currency.label}</span>{" "}
           <strong className="text-2xl">0.750</strong>
         </div>
         <div className="text-sm">
@@ -51,7 +60,7 @@ function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
         </div>
         <div className="text-sm">
           <span className="opacity-70 text-sm">Limits:</span>{" "}
-          <span>2.000 - 5.000 EUR</span>
+          <span>2.000 - 5.000 {currency.label}</span>
         </div>
       </div>
 
@@ -67,10 +76,10 @@ function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
         <button
           className={cn(
             isSelling ? "bg-kadexo-red" : "bg-kadexo-green",
-            "shrink-0 rounded-md py-1.5 w-32 font-medium text-white"
+            "shrink-0 rounded-md py-1.5 px-6 min-w-32 font-medium text-white"
           )}
         >
-          {isSelling ? "Sell" : "Buy"} WLD
+          {isSelling ? "Sell" : "Buy"} {token?.label || WLD_TOKEN.label}
         </button>
       </nav>
     </div>

@@ -1,36 +1,19 @@
 "use client"
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Fragment, useState } from "react"
+import { Fragment } from "react"
 import { usePathname, useRouter } from "next/navigation"
+
+import MainSelect from "@/components/MainSelect"
+import { ALL_TOKENS, useTokenAtom, WLD_TOKEN } from "@/lib/atoms/token"
 
 import { MdOutlineSyncAlt } from "react-icons/md"
 import { FaChevronDown, FaFilter } from "react-icons/fa"
-import MainSelect from "@/components/MainSelect"
-
-const WLD_TOKEN = {
-  label: "WLD",
-  value: "WLD",
-} as const
-
-const OPTIONS_TOKENS = {
-  WLD: WLD_TOKEN,
-  "USDC.E": {
-    label: "USDC.E",
-    value: "USDC.E",
-  },
-  WETH: {
-    label: "WETH",
-    value: "WETH",
-  },
-  WBTC: {
-    label: "WBTC",
-    value: "WBTC",
-  },
-} as const
+import { ALL_CURRENCIES, USD, useCurrencyAtom } from "@/lib/atoms/currency"
 
 export default function Navigation() {
-  const [selectedToken, setSelectedToken] = useState(WLD_TOKEN)
+  const [selectedToken, setSelectedToken] = useTokenAtom()
+  const [currency, setCurrency] = useCurrencyAtom()
   const router = useRouter()
   const pathname = usePathname()
   const isSell = pathname === "/sell"
@@ -63,15 +46,20 @@ export default function Navigation() {
       <nav className="flex sticky text-sm top-0 z-1 py-1 bg-gradient-to-bl from-white/100 via-white/100 to-white/45 backdrop-blur-sm gap-5 px-4 items-center">
         <MainSelect
           value={selectedToken.value}
+          options={Object.values(ALL_TOKENS)}
           onValueChange={(value) => {
-            setSelectedToken((OPTIONS_TOKENS as any)[value])
+            setSelectedToken((ALL_TOKENS as any)[value])
           }}
-          options={Object.values(OPTIONS_TOKENS)}
         >
           {(selected) => (
             <button className="flex outline-none py-3 items-center gap-1.5">
-              <figure className="size-6 bg-black shrink-0 rounded-full" />
-              <strong>{selected?.label || "WLD"}</strong>
+              <figure
+                style={{
+                  backgroundImage: `url(/token/${selected?.value}.png)`,
+                }}
+                className="size-6 bg-cover bg-center bg-black/80 shrink-0 rounded-full"
+              />
+              <strong>{selected?.label || WLD_TOKEN.label}</strong>
               <FaChevronDown className="ml-1" />
             </button>
           )}
@@ -85,11 +73,20 @@ export default function Navigation() {
         <div className="flex-grow" />
 
         <nav className="flex gap-2 items-center">
-          <button className="flex bg-white border rounded-full py-1.5 px-3 items-center gap-1.5">
-            <strong>EUR</strong>
-            <MdOutlineSyncAlt className="scale-125" />
-          </button>
-
+          <MainSelect
+            value={currency.value}
+            options={Object.values(ALL_CURRENCIES)}
+            onValueChange={(value) => {
+              setCurrency((ALL_CURRENCIES as any)[value])
+            }}
+          >
+            {(selected) => (
+              <button className="flex outline-none bg-white border rounded-full py-1.5 px-3 items-center gap-1.5">
+                <strong>{selected?.label || USD.label}</strong>
+                <MdOutlineSyncAlt className="scale-125" />
+              </button>
+            )}
+          </MainSelect>
           <button className="size-9 bg-white border rounded-xl grid place-items-center">
             <FaFilter />
           </button>
