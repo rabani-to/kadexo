@@ -4,7 +4,7 @@ import BottomNavigation from "./BottomNavigation"
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
-    <main className="min-h-screen w-full max-w-2xl mx-auto">
+    <main className="min-h-screen bg-white w-full max-w-2xl mx-auto">
       <Navigation />
       {children}
       <BottomNavigation />
