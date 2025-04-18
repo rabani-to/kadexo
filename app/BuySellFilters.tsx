@@ -13,6 +13,7 @@ import { ALL_CURRENCIES, USD, useCurrencyAtom } from "@/lib/atoms/currency"
 import NumberSelectModal, {
   getCurrrencySymbol,
 } from "@/components/NumberSelectModal"
+import ModalMarketFilters from "@/components/ModalMarketFilters"
 
 export default function BuySellFilters() {
   const [value, setValue] = useState(0)
@@ -102,9 +103,13 @@ export default function BuySellFilters() {
               </button>
             )}
           </MainSelect>
-          <button className="size-9 bg-white border rounded-xl grid place-items-center">
-            <FaFilter />
-          </button>
+          <ModalMarketFilters
+            trigger={
+              <button className="size-9 bg-white border rounded-xl grid place-items-center">
+                <FaFilter />
+              </button>
+            }
+          />
         </nav>
       </nav>
     </Fragment>

@@ -36,6 +36,7 @@ const config: Config = {
         kadexo: {
           green: {
             DEFAULT: "#2ebd85",
+            er: "#bf0",
           },
           red: {
             DEFAULT: "#f6465d",

@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 
 export function useOnRouterBack(onRouterBack: (e: PopStateEvent) => void) {
@@ -16,4 +17,31 @@ export function useOnRouterBack(onRouterBack: (e: PopStateEvent) => void) {
       window.removeEventListener("popstate", handleRouteChange as any)
     }
   }, [onRouterBack])
+}
+
+/**
+ * Helper function to toggle the route based on the active state.
+ * This is useful for modals or drawers so we have a history state
+ * and can go back to the previous state.
+ */
+export function useToggleRouteOnActive({
+  slug,
+  isActive,
+}: {
+  slug: string
+  isActive: boolean
+}) {
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isActive) {
+      router.push(location.pathname + `#${slug}`, {
+        scroll: false,
+      })
+    } else {
+      router.replace(location.pathname, {
+        scroll: false,
+      })
+    }
+  }, [isActive, slug])
 }

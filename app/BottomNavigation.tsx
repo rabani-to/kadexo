@@ -44,7 +44,7 @@ export default function BottomNavigation() {
           <nav className="w-full shrink-0 [&_a]:shrink-0 sticky bottom-0 !bg-black/90 border-t border-black backdrop-blur rounded-none h-auto grid grid-cols-4">
             <TabsTrigger
               asChild
-              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-yellow-400"
+              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-kadexo-green-er"
               value={ROUTES.market.value}
             >
               <Link href={ROUTES.market.href}>
@@ -57,7 +57,7 @@ export default function BottomNavigation() {
 
             <TabsTrigger
               asChild
-              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-yellow-400"
+              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-kadexo-green-er"
               value={ROUTES.orders.value}
             >
               <Link href={ROUTES.orders.href}>
@@ -70,7 +70,7 @@ export default function BottomNavigation() {
 
             <TabsTrigger
               asChild
-              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-yellow-400"
+              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-kadexo-green-er"
               value={ROUTES.ads.value}
             >
               <Link href={ROUTES.ads.href}>
@@ -83,7 +83,7 @@ export default function BottomNavigation() {
 
             <TabsTrigger
               asChild
-              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-yellow-400"
+              className="grid place-items-center p-1.5 h-12 rounded-none text-white !bg-transparent text-white/40 data-[state=active]:text-kadexo-green-er"
               value={ROUTES.profile.value}
             >
               <Link href={ROUTES.profile.href}>

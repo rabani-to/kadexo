@@ -10,8 +10,7 @@ import {
   DrawerTrigger,
   NumberPad,
 } from "@worldcoin/mini-apps-ui-kit-react"
-import { useRouter } from "next/navigation"
-import { useOnRouterBack } from "@/lib/window"
+import { useOnRouterBack, useToggleRouteOnActive } from "@/lib/window"
 
 export default function NumberSelectModal({
   value: externalValue,
@@ -24,7 +23,6 @@ export default function NumberSelectModal({
   onValueChange: (value: number) => void
   currency?: Required<keyof typeof ALL_CURRENCIES>
 }) {
-  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [value, setValue] = useState("")
   const [updatingValue, setUpdatingValue] = useState("")
@@ -34,17 +32,10 @@ export default function NumberSelectModal({
     return Number.isFinite(formatted) ? formatted : 0
   }
 
-  useEffect(() => {
-    if (isOpen) {
-      router.push(location.pathname + "#number-pad", {
-        scroll: false,
-      })
-    } else {
-      router.replace(location.pathname, {
-        scroll: false,
-      })
-    }
-  }, [isOpen])
+  useToggleRouteOnActive({
+    isActive: isOpen,
+    slug: "customize-amount",
+  })
 
   useOnRouterBack((e) => {
     e.preventDefault()
@@ -72,11 +63,9 @@ export default function NumberSelectModal({
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>{children(normalizeNumber(value))}</DrawerTrigger>
-      <DrawerContent className="flex flex-col items-center p-4">
+      <DrawerContent className="flex flex-col items-center p-6">
         <DrawerHeader>
-          <h2 className="font-title font-medium">
-            <strong>Enter amount</strong>
-          </h2>
+          <h2 className="text-lg font-medium">Enter amount</h2>
         </DrawerHeader>
 
         <div className="flex pb-8 pt-16 size-full flex-col gap-4 items-center">
@@ -97,7 +86,7 @@ export default function NumberSelectModal({
 
           <div className="flex-grow" />
 
-          <section className="[&_button]:h-14 shrink-0">
+          <section className="[&_button]:h-14 w-full max-w-lg shrink-0">
             <NumberPad
               onLongDeletePress={() => setUpdatingValue("")}
               longPressOptions={{
