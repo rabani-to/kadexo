@@ -1,7 +1,7 @@
 "use client"
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 
 import MainSelect from "@/components/MainSelect"
@@ -14,7 +14,8 @@ import NumberSelectModal, {
   getCurrrencySymbol,
 } from "@/components/NumberSelectModal"
 
-export default function Navigation() {
+export default function BuySellFilters() {
+  const [value, setValue] = useState(0)
   const [selectedToken, setSelectedToken] = useTokenAtom()
   const [currency, setCurrency] = useCurrencyAtom()
   const router = useRouter()
@@ -68,7 +69,11 @@ export default function Navigation() {
           )}
         </MainSelect>
 
-        <NumberSelectModal currency={currency.value}>
+        <NumberSelectModal
+          value={value}
+          onValueChange={setValue}
+          currency={currency.value}
+        >
           {(value) => (
             <button className="flex whitespace-nowrap py-3 items-center gap-1.5">
               <strong>

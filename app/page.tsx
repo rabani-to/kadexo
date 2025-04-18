@@ -1,5 +1,13 @@
-import SellerList from "./sections/SellerList"
+import { Fragment } from "react"
 
-export default function PageDefaultBuy() {
-  return <SellerList type="buy" />
+import SellerList from "@/app/sections/SellerList"
+import BuySellFilters from "@/app/BuySellFilters"
+
+export default function PageDefaultSell() {
+  return (
+    <Fragment>
+      <BuySellFilters />
+      <SellerList type="buy" />
+    </Fragment>
+  )
 }

@@ -10,6 +10,8 @@ import {
   DrawerTrigger,
   NumberPad,
 } from "@worldcoin/mini-apps-ui-kit-react"
+import { useRouter } from "next/navigation"
+import { useOnRouterBack } from "@/lib/window"
 
 export default function NumberSelectModal({
   value: externalValue,
@@ -18,10 +20,11 @@ export default function NumberSelectModal({
   children,
 }: {
   children: (value?: number) => JSX.Element
-  value?: number
-  onValueChange?: (value: number) => void
+  value: number
+  onValueChange: (value: number) => void
   currency?: Required<keyof typeof ALL_CURRENCIES>
 }) {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [value, setValue] = useState("")
   const [updatingValue, setUpdatingValue] = useState("")
@@ -30,6 +33,25 @@ export default function NumberSelectModal({
     const formatted = Number(value)
     return Number.isFinite(formatted) ? formatted : 0
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      router.push(location.pathname + "#number-pad", {
+        scroll: false,
+      })
+    } else {
+      router.replace(location.pathname, {
+        scroll: false,
+      })
+    }
+  }, [isOpen])
+
+  useOnRouterBack((e) => {
+    e.preventDefault()
+    if (isOpen) {
+      setIsOpen(false)
+    }
+  })
 
   useEffect(() => {
     setUpdatingValue(value)
@@ -53,16 +75,16 @@ export default function NumberSelectModal({
       <DrawerContent className="flex flex-col items-center p-4">
         <DrawerHeader>
           <h2 className="font-title font-medium">
-            <strong>Enter an amount</strong>
+            <strong>Enter amount</strong>
           </h2>
         </DrawerHeader>
 
-        <div className="flex py-4 h-full flex-col gap-4 items-center w-[400px]">
+        <div className="flex pb-8 pt-16 size-full flex-col gap-4 items-center">
           <div className="font-semibold flex items-center gap-2 h-[4.25rem]">
             <span className="text-xl">{getCurrrencySymbol(currency)}</span>
             <span
               className={
-                updatingValue.length > 5 ? "text-5xl" : "text-[3.5rem]"
+                updatingValue.length > 5 ? "text-[3.5rem]" : "text-[4rem]"
               }
             >
               {Number(updatingValue) > 1_000
@@ -75,14 +97,16 @@ export default function NumberSelectModal({
 
           <div className="flex-grow" />
 
-          <NumberPad
-            onLongDeletePress={() => setUpdatingValue("")}
-            longPressOptions={{
-              threshold: 500,
-            }}
-            value={updatingValue}
-            onChange={setUpdatingValue}
-          />
+          <section className="[&_button]:h-14 shrink-0">
+            <NumberPad
+              onLongDeletePress={() => setUpdatingValue("")}
+              longPressOptions={{
+                threshold: 500,
+              }}
+              value={updatingValue}
+              onChange={setUpdatingValue}
+            />
+          </section>
         </div>
 
         <nav className="shrink-0 w-full">

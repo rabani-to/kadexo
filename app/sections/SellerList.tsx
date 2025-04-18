@@ -27,10 +27,10 @@ function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
   return (
     <div className="border-b p-4 pb-8 border-black/5">
       <nav className="flex items-center">
-        <div className="flex items-start gap-1">
-          <div className="relative mr-1">
-            <figure className="bg-black rounded-lg overflow-hidden size-6"></figure>
-            <div className="absolute border border-white bg-kadexo-green size-2 rounded-full -bottom-0.5 -right-0.5" />
+        <div className="flex items-start gap-1.5">
+          <div className="relative mt-1 mr-1">
+            <figure className="bg-black rounded-lg overflow-hidden size-7"></figure>
+            <div className="absolute border border-white bg-kadexo-green size-2.5 rounded-full -bottom-0.5 -right-0.5" />
           </div>
           <div>
             <h2>Fastdeals XYZ</h2>
@@ -49,11 +49,12 @@ function Seller({ type = "buy" }: { type?: "buy" | "sell" }) {
         </div>
       </nav>
 
-      <div className="mt-3 grid gap-1">
+      <div className="mt-4 grid gap-1">
         <div>
           <span className="opacity-70 mr-1 text-sm">{currency.label}</span>{" "}
           <strong className="text-2xl">0.750</strong>
         </div>
+
         <div className="text-sm">
           <span className="opacity-70">Available:</span>{" "}
           <span>106.6667 USDT</span>
