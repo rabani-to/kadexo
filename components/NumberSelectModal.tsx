@@ -8,6 +8,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTrigger,
+  DrawerTitle,
   NumberPad,
 } from "@worldcoin/mini-apps-ui-kit-react"
 import { useOnRouterBack, useToggleRouteOnActive } from "@/lib/window"
@@ -65,7 +66,7 @@ export default function NumberSelectModal({
       <DrawerTrigger asChild>{children(normalizeNumber(value))}</DrawerTrigger>
       <DrawerContent className="flex flex-col items-center p-6">
         <DrawerHeader>
-          <h2 className="text-lg font-medium">Enter amount</h2>
+          <DrawerTitle>Enter amount</DrawerTitle>
         </DrawerHeader>
 
         <div className="flex pb-8 pt-16 size-full flex-col gap-4 items-center">

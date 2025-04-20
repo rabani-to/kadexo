@@ -12,15 +12,18 @@ import {
   DrawerHeader,
   DrawerTrigger,
   Flag,
+  DrawerTitle,
 } from "@worldcoin/mini-apps-ui-kit-react"
 import { useOnRouterBack, useToggleRouteOnActive } from "@/lib/window"
 import { cn } from "@/lib/utils"
+import ModalPayment, { type PaymentMethod, ALL_PAYMENTS } from "./ModalPayment"
 
 export default function ModalMarketFilters({
   trigger,
 }: {
   trigger: JSX.Element
 }) {
+  const [payments, setPayments] = useState<PaymentMethod[]>([])
   const [country, setCountry] = useState<CountryCode>()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -28,6 +31,7 @@ export default function ModalMarketFilters({
     defaultCountries.find(([, code]) => code.toUpperCase() === country) || []
 
   const isCountrySelected = Boolean(countryName && country)
+  const isFullPaymentSelected = payments.length === ALL_PAYMENTS.length
 
   useToggleRouteOnActive({
     isActive: isOpen,
@@ -46,7 +50,7 @@ export default function ModalMarketFilters({
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent className="flex flex-col items-center p-6">
         <DrawerHeader>
-          <h2 className="text-lg font-medium">Customize your search</h2>
+          <DrawerTitle>Customize your search</DrawerTitle>
         </DrawerHeader>
 
         <div className="flex py-4 size-full flex-col gap-5 items-center">
@@ -86,8 +90,31 @@ export default function ModalMarketFilters({
           <fieldset className="flex w-full flex-col gap-1.5">
             <label className="w-full flex text-sm">Payment method</label>
             <section className="flex gap-2 flex-wrap">
-              <SelectOption withClose>Bank Transfer</SelectOption>
-              <SelectOption withAdd>Add</SelectOption>
+              {payments.map((payment) => (
+                <SelectOption
+                  key={`selected-${payment.value}`}
+                  onClick={() =>
+                    setPayments((prev) =>
+                      prev.filter((p) => p.value !== payment.value)
+                    )
+                  }
+                  withClose
+                >
+                  {payment.label}
+                </SelectOption>
+              ))}
+
+              <ModalPayment
+                selected={payments}
+                onSelect={(payment) => setPayments([...payments, payment])}
+                trigger={
+                  isFullPaymentSelected ? null : (
+                    <SelectOption withAdd>
+                      {payments.length > 0 ? "Add more" : "Add payment"}
+                    </SelectOption>
+                  )
+                }
+              />
             </section>
           </fieldset>
         </div>
@@ -106,12 +133,15 @@ function SelectOption({
   children,
   withClose,
   withAdd,
+  ...props
 }: PropsWithChildren<{
+  onClick?: () => void
   withClose?: boolean
   withAdd?: boolean
 }>) {
   return (
     <button
+      {...props}
       className={cn(
         withClose ? "pr-2" : "pr-3",
         "border flex items-center gap-2 h-9 pl-3 rounded-full border-black/3 bg-black/3"
