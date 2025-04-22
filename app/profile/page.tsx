@@ -11,6 +11,7 @@ export default function PageProfile() {
   return (
     <section className="min-h-screen">
       <TopBar
+        className="sticky bg-white top-0 z-10"
         startAdornment={
           <button
             onClick={() => router.back()}
