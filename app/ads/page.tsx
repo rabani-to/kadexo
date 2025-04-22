@@ -25,8 +25,9 @@ export default function PageAds() {
 
   return (
     <section className="min-h-screen">
-      <nav className="border-b bg-white top-0 pb-3 sticky z-10">
+      <nav className="border-b bg-white top-0 sticky z-10">
         <TopBar
+          className="py-0 px-5"
           startAdornment={
             <button
               onClick={() => router.back()}
@@ -42,7 +43,7 @@ export default function PageAds() {
       <nav className="bg-gradient-to-b flex items-center justify-between from-kadexo-green-er/5 to-kadexo-green-er/0 text-black p-4">
         <label className="flex cursor-pointer items-center gap-2">
           <Checkbox defaultChecked />
-          <span>Show my ads in the Market</span>
+          <span>Show in the Market</span>
         </label>
 
         <MainSelect
@@ -61,11 +62,12 @@ export default function PageAds() {
 
       <div className="section mt-16 text-center grid gap-3 place-items-center">
         <LuNotebookPen className="text-5xl" />
+
         <p className="max-w-xs text-sm opacity-70">
           You don't have any ads yet. Create an ad to start buying and selling
         </p>
 
-        <button className="bg-black text-white px-5 py-2 rounded-full">
+        <button className="mt-4 bg-black text-white px-5 py-2 rounded-full">
           Create now
         </button>
       </div>

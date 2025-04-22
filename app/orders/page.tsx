@@ -13,8 +13,9 @@ export default function PageOrders() {
 
   return (
     <section className="min-h-screen">
-      <nav className="sticky bg-white top-0 z-10">
+      <nav className="sticky bg-white border-b top-0 z-10">
         <TopBar
+          className="py-0 px-5"
           startAdornment={
             <button
               onClick={() => router.back()}
@@ -26,61 +27,61 @@ export default function PageOrders() {
           title="Your orders"
         />
 
-        <div className="border-b">
-          <Tabs defaultValue="active">
-            <TabsList>
-              <TabsTrigger
-                className="border-b-2 px-4 py-2 border-transparent data-[state=active]:border-black font-medium"
-                value="active"
-              >
-                <button>Active</button>
-              </TabsTrigger>
-
-              <TabsTrigger
-                className="border-b-2 px-4 py-2 border-transparent data-[state=active]:border-black font-medium"
-                value="everything"
-              >
-                <button>Everything</button>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      </nav>
-
-      <nav className="flex items-center gap-4 mt-4">
-        <h2 className="opacity-70 text-sm">Filter</h2>
-
-        <div className="h-4 w-px bg-black" />
-
-        <Tabs defaultValue="buys">
-          <TabsList className="border font-medium overflow-hidden rounded-full">
+        <Tabs defaultValue="active">
+          <TabsList>
             <TabsTrigger
-              className="py-1 text-sm px-4 text-black/60 data-[state=active]:text-black data-[state=active]:bg-black/5"
-              value="buys"
+              className="border-b-2 px-4 py-2 border-transparent data-[state=active]:border-black font-medium"
+              value="active"
             >
-              <button>Buys</button>
+              <button>Active</button>
             </TabsTrigger>
 
             <TabsTrigger
-              className="py-1 text-sm px-4 text-black/60 data-[state=active]:text-black data-[state=active]:bg-black/5"
-              value="sells"
+              className="border-b-2 px-4 py-2 border-transparent data-[state=active]:border-black font-medium"
+              value="everything"
             >
-              <button>Sells</button>
+              <button>Everything</button>
             </TabsTrigger>
           </TabsList>
         </Tabs>
-
-        <div className="flex-grow" />
-
-        <button className="text-lg">
-          <FaRegCalendarAlt />
-        </button>
       </nav>
 
-      <div className="flex mt-6 mb-12 flex-col gap-5">
-        <Order />
-        <Order />
-        <Order />
+      <div className="px-4 mt-2">
+        <nav className="flex items-center gap-4 mt-4">
+          <h2 className="opacity-70 text-sm">Type</h2>
+
+          <div className="h-4 w-px bg-black" />
+
+          <Tabs defaultValue="buys">
+            <TabsList className="border font-medium overflow-hidden rounded-full">
+              <TabsTrigger
+                className="py-1.5 text-sm px-4 text-black/50 data-[state=active]:text-black data-[state=active]:bg-black/5"
+                value="buys"
+              >
+                <button>Buys</button>
+              </TabsTrigger>
+
+              <TabsTrigger
+                className="py-1.5 text-sm px-4 text-black/50 data-[state=active]:text-black data-[state=active]:bg-black/5"
+                value="sells"
+              >
+                <button>Sells</button>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          <div className="flex-grow" />
+
+          <button className="text-lg">
+            <FaRegCalendarAlt />
+          </button>
+        </nav>
+
+        <div className="flex mt-6 mb-12 flex-col gap-5">
+          <Order />
+          <Order />
+          <Order />
+        </div>
       </div>
     </section>
   )
