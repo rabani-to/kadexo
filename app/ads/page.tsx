@@ -40,7 +40,7 @@ export default function PageAds() {
         />
       </nav>
 
-      <nav className="bg-gradient-to-b flex items-center justify-between from-kadexo-green-er/5 to-kadexo-green-er/0 text-black p-4">
+      <nav className="bg-gradient-to-b flex items-center justify-between from-kadexo-green-er/5 to-kadexo-green-er/0 text-black p-4 !pt-2">
         <label className="flex cursor-pointer items-center gap-2">
           <Checkbox defaultChecked />
           <span>Show in the Market</span>

@@ -12,6 +12,7 @@ const config: Config = {
       fontFamily: {
         title: "var(--font-display)",
       },
+      width: { "2px": "2px" },
       zIndex: {
         "1": "1",
         "2": "2",

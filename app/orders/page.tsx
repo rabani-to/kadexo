@@ -48,21 +48,23 @@ export default function PageOrders() {
 
       <div className="px-4 mt-2">
         <nav className="flex items-center gap-4 mt-4">
-          <h2 className="opacity-70 text-sm">Type</h2>
+          <h2 className="opacity-70 text-xs">Filter by</h2>
 
           <div className="h-4 w-px bg-black" />
 
           <Tabs defaultValue="buys">
-            <TabsList className="border font-medium overflow-hidden rounded-full">
+            <TabsList className="border h-9 flex font-medium overflow-hidden rounded-full">
               <TabsTrigger
-                className="py-1.5 text-sm px-4 text-black/50 data-[state=active]:text-black data-[state=active]:bg-black/5"
+                className="h-full text-sm px-5 text-black/50 data-[state=active]:bg-kadexo-green/15 data-[state=active]:text-kadexo-green"
                 value="buys"
               >
                 <button>Buys</button>
               </TabsTrigger>
 
+              <div className="h-full w-px bg-black/10" />
+
               <TabsTrigger
-                className="py-1.5 text-sm px-4 text-black/50 data-[state=active]:text-black data-[state=active]:bg-black/5"
+                className="h-full text-sm px-5 text-black/50 data-[state=active]:bg-kadexo-red/10 data-[state=active]:text-kadexo-red"
                 value="sells"
               >
                 <button>Sells</button>
@@ -131,10 +133,10 @@ function Order() {
 
         <div className="flex items-center justify-between">
           <span className="opacity-70 text-sm">Seller</span>
-          <span className="font-medium inline-flex items-center gap-1">
+          <span className="font-medium inline-flex items-center gap-2">
             <span>someone</span>
-            <button className="bg-black/3 rounded-full p-1">
-              <TbMessageDots className="scale-110" />
+            <button className="bg-black/3 rounded-full p-2">
+              <TbMessageDots className="scale-125" />
             </button>
           </span>
         </div>
